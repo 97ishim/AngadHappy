@@ -1,0 +1,463 @@
+// ==UserScript==
+// @name         ANGAD Theme
+
+// @namespace    http://tampermonkey.net/
+
+// @version      1.0
+
+// @description  Official ANGAD theme for Shell Shockers.
+
+// @author       97 and Mushy
+// @match        https://algebra.best/*
+// @match        https://algebra.vip/*
+
+// @match        https://biologyclass.club/*
+
+// @match        https://deadlyegg.com/*
+// @match        https://deathegg.world/*
+
+// @match        https://egg.dance/*
+// @match        https://eggboy.club/*
+// @match        https://eggboy.xyz/*
+// @match        https://eggcombat.com/*
+// @match        https://eggfacts.fun/*
+// @match        https://egghead.institute/*
+// @match        https://eggisthenewblack.com/*
+// @match        https://eggsarecool.com/*
+// @match        https://eggshooter.best/*
+
+// @match        https://geometry.best/*
+// @match        https://geometry.monster/*
+// @match        https://geometry.pw/*
+// @match        https://geometry.report/*
+
+// @match        https://hardboiled.life/*
+// @match        https://hardshell.life/*
+// @match        https://humanorganising.org/*
+// @match        https://mathactivity.xyz/*
+// @match        https://mathdrills.info/*
+// @match        https://mathdrills.life/*
+// @match        https://mathfun.rocks/*
+// @match        https://mathgames.world/*
+// @match        https://math.international/*
+// @match        https://mathlete.fun/*
+// @match        https://mathlete.pro/*
+// @match        https://new.shellshock.io/*
+// @match        https://overeasy.club/*
+
+// @match        https://scrambled.best/*
+// @match        https://scrambled.tech/*
+// @match        https://scrambled.today/*
+// @match        https://scrambled.us/*
+// @match        https://shellshock.io/*
+// @match        https://scrambled.world/*
+// @match        https://shellshockers.today/*
+// @match        https://shellsocks.com/*
+// @match        https://shellshockers.club/*
+// @match        https://shellshockers.site/*
+// @match        https://shellshockers.today/*
+// @match        https://shellshockers.us/*
+// @match        https://shellshockers.world/*
+// @match        https://shellshockers.xyz/*
+// @match        https://softboiled.club/*
+
+// @match        https://urbanegger.com/*
+
+// @match        https://violentegg.club/*
+// @match        https://violentegg.fun/*
+
+// @match        https://yolk.best/*
+// @match        https://yolk.life/*
+// @match        https://yolk.quest/*
+// @match        https://yolk.rocks/*
+// @match        https://yolk.tech/*
+// @match        https://yolk.today/*
+
+// @match        https://zygote.cafe/*
+
+// @license      GPL 3.0
+
+// @grant        none
+
+// @icon        https://raw.githubusercontent.com/97ishim/AngadHappy/refs/heads/main/HappyAngad.jpg
+// ==/UserScript==
+
+(function () {
+  var container = document.createElement('div');
+  container.style.position = 'fixed';
+  container.style.bottom = '110px';
+  container.style.right = '10px';
+  container.style.backgroundColor = 'transparent';
+  container.style.color = 'white';
+  container.style.padding = '5px';
+  container.style.fontFamily = 'Arial';
+  container.style.fontSize = '14px';
+  container.style.zIndex = '9999';
+
+  var row1 = document.createElement('div');
+  row1.style.display = 'flex';
+  row1.style.justifyContent = 'center';
+
+  var upKey = createKeyElement('W');
+
+  var row2 = document.createElement('div');
+  row2.style.display = 'flex';
+  row2.style.justifyContent = 'center';
+
+  var leftKey = createKeyElement('A');
+  var sprintKey = createKeyElement('S');
+  var rightKey = createKeyElement('D');
+
+  var row3 = document.createElement('div');
+  row3.style.display = 'flex';
+  row3.style.justifyContent = 'center';
+
+  var shiftKey = createKeyElement('Shift');
+  var spaceKey = createKeyElement(' ');
+
+  var row4 = document.createElement('div');
+  row4.style.display = 'flex';
+  row4.style.justifyContent = 'center';
+
+  var lmbKey = createKeyElement('LMB');
+  var rmbKey = createKeyElement('RMB');
+
+  row1.appendChild(upKey);
+  row2.appendChild(leftKey);
+  row2.appendChild(sprintKey);
+  row2.appendChild(rightKey);
+  row3.appendChild(shiftKey);
+  row3.appendChild(spaceKey);
+  row4.appendChild(lmbKey);
+  row4.appendChild(rmbKey);
+  container.appendChild(row1);
+  container.appendChild(row2);
+  container.appendChild(row3);
+  container.appendChild(row4);
+
+  document.body.appendChild(container);
+
+  document.addEventListener('keydown', function (event) {
+    highlightKey(event.key, '#4169E1');
+  });
+
+  document.addEventListener('keyup', function (event) {
+    highlightKey(event.key, 'transparent');
+  });
+
+  document.addEventListener('mousedown', function (event) {
+    if (event.button === 0) {
+      lmbKey.style.backgroundColor = '#4169E1';
+    } else if (event.button === 2) {
+      rmbKey.style.backgroundColor = '#4169E1';
+    }
+  });
+
+  document.addEventListener('mouseup', function (event) {
+    if (event.button === 0) {
+      lmbKey.style.backgroundColor = 'transparent';
+    } else if (event.button === 2) {
+      rmbKey.style.backgroundColor = 'transparent';
+    }
+  });
+
+  function createKeyElement(keyText) {
+    var keyElement = document.createElement('div');
+    keyElement.style.backgroundColor = 'transparent';
+    keyElement.style.color = 'white';
+    keyElement.style.padding = '5px';
+    keyElement.style.margin = '2px';
+    keyElement.style.border = '2px solid black';
+    keyElement.style.borderRadius = '5px';
+    keyElement.style.fontFamily = 'Arial';
+    keyElement.style.fontSize = '20px';
+    keyElement.textContent = keyText;
+    return keyElement;
+  }
+
+  function highlightKey(key, color) {
+    switch (key) {
+      case 'w':
+        upKey.style.backgroundColor = color;
+        break;
+      case 'a':
+        leftKey.style.backgroundColor = color;
+        break;
+      case 's':
+        sprintKey.style.backgroundColor = color;
+        break;
+      case 'd':
+        rightKey.style.backgroundColor = color;
+        break;
+      case 'Shift':
+        shiftKey.style.backgroundColor = color;
+        break;
+      case ' ':
+        spaceKey.style.backgroundColor = color;
+        break;
+      default:
+        break;
+    }
+  }
+
+const addCustomCrosshair = () => {
+    window.mod = {
+    loadGui: () => {},
+    modMenu: {
+      instruction: {},
+      credit: {},
+      crosshairSettings: {
+
+        type: "None",
+        container: {
+          label: {},
+        },
+      },
+    },
+  };
+
+  window._utils = {};
+  window._utils.requirelib = async function (url, global) {
+    return new Promise(async function (resolve) {
+      async function getCode() {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", url, false);
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+      }
+      let code = await getCode();
+
+      if (global) {
+        code += 'window["' + global + '"] = ' + global + ";";
+      }
+      let evaluateCode = new Function(code);
+      evaluateCode();
+      resolve("done");
+    });
+  };
+
+  window._utils
+    .then(() => {
+      window.mod.loadGui();
+    });
+
+  const y = document.createElement("div");
+  y.id = "crossY";
+  const z = document.createElement("div");
+  z.id = "crossZ";
+  const w = document.createElement("div");
+  w.id = "crossW";
+  const x = document.createElement("div");
+  x.id = "crossX";
+
+      y.style.cssText = `width:8px;height:8px;background-color:#000000;position:absolute;margin:auto;top:0;right:0;bottom:0;left:0;z-index:200;border-radius:0px`;
+      z.style.cssText = `width:7px;height:7px;background-color:#4169E1;position:absolute;margin:auto;top:0;right:0;bottom:0;left:0;z-index:200;border-radius:0px`;
+      w.style.cssText = `width:0.0000000001px;height:1px;background-color:#4169E1;position:absolute;margin:auto;top:0;right:0;bottom:0;left:0;z-index:200;border-radius:0px`;
+      x.style.cssText = `width:0.0000000001px;height:1px;background-color:#4169E1;position:absolute;margin:auto;top:0;right:0;bottom:0;left:0;z-index:200;border-radius:0px`;
+
+
+  document.body.appendChild(y);
+  document.body.appendChild(z);
+  document.body.appendChild(w);
+  document.body.appendChild(x);
+
+}
+
+const drawCustomSky = () => {
+
+        const canvas = document.getElementById('gameCanvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const skyImage = new Image();
+
+        skyImage.src = 'https://helloworld-1839.github.io/ss/skyboxes/sunset/'; // Replace with your custom image URL
+
+
+        skyImage.onload = function () {
+
+            ctx.drawImage(skyImage, 0, 0, canvas.width, canvas.height);
+        };
+
+
+        window.addEventListener('resize', () => {
+            ctx.drawImage(skyImage, 0, 0, canvas.width, canvas.height);
+        });
+    };
+
+
+    const checkCanvas = setInterval(() => {
+        const canvas = document.getElementById('gameCanvas');
+        if (canvas) {
+            clearInterval(checkCanvas);
+            drawCustomSky();
+        }
+    }, 100);
+
+const addCustomSky = () => {
+        document.head.innerHTML += `<style>
+
+            body, #gameCanvas {
+                background-image: url('https://raw.githubusercontent.com/97ishim/AngadHappy/refs/heads/main/HappyAngad.jpg'); /* Replace with your image URL */
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
+            }
+        </style>`;
+    }
+    const addScript = () => {
+        document.head.innerHTML += `<style>
+* {
+    --ss-transparent: #00000000;
+    --ss-black: #001f3f; /* Deep navy blue */
+    --ss-white: #f0f8ff; /* Alice blue */
+    --ss-offwhite: #dbe9f4; /* Soft icy blue */
+    --ss-yellow0: #ffd700; /* Gold */
+    --ss-yellow: #ffcc00; /* Bright gold */
+    --ss-yolk0: #ffb400; /* Warm amber */
+    --ss-yolk: #ffa000; /* Deep amber */
+    --ss-yolk2: #ff8c00; /* Sunset orange */
+    --ss-red0: #e63946; /* Crimson red */
+    --ss-red: #d62828; /* Rich red */
+    --ss-red2: #b22222; /* Firebrick red */
+    --ss-red-bright: #ff4500; /* Bright orange-red */
+    --ss-pink: #c71585; /* Deep pink */
+    --ss-pink1: #e75480; /* Coral pink */
+    --ss-pink-light: #f8c8dc; /* Light blush pink */
+    --ss-brown: #5d4037; /* Earthy brown */
+    --ss-blue00: #4169e1; /* Royal blue */
+    --ss-blue0: #1e3a8a; /* Deep royal blue */
+    --ss-blue1: #0d47a1; /* Strong blue */
+    --ss-blue2: #002366; /* Midnight royal blue */
+    --ss-blue3: #001f54; /* Dark blue */
+    --ss-blue4: #000c66; /* Ultra dark blue */
+    --ss-blue5: #000a33; /* Deep navy */
+    --ss-green0: #5f9ea0; /* Cadet blue */
+    --ss-green1: #4682b4; /* Steel blue */
+    --ss-green2: #2e8b57; /* Sea green */
+    --ss-orange1: #ff8c00; /* Vibrant orange */
+    --ss-vip-gold: linear-gradient(to right, #ffd700, #ffb400, #e63946, #d62828, #b22222); /* Royal gold and red gradient */
+    --ss-clear: rgba(65, 105, 225, 0.0); /* Transparent royal blue */
+    --ss-blue2clear: rgba(30, 58, 138, 0.0); /* Transparent deep blue */
+    --ss-shadow: rgba(13, 71, 161, 0.5); /* Blue shadow */
+    --ss-blueshadow: #1e3a8a; /* Deep ocean shadow */
+    --ss-darkoverlay: rgba(13, 71, 161, 0.8); /* Strong deep blue overlay */
+    --ss-darkoverlay2: rgba(65, 105, 225, 0.4);
+    --ss-lightoverlay: url("https://raw.githubusercontent.com/97ishim/AngadHappy/refs/heads/main/HappyAngad.jpg");
+
+    --ss-lightbackground: linear-gradient(#4169e1, #1e3a8a); /* Royal blue gradient */
+    --ss-blueblend1: linear-gradient(#ffd700, #ffb400);
+    --ss-scrollmask1: linear-gradient(rgba(65, 105, 225, 0), rgba(30, 58, 138, 1));
+    --ss-scrollmask2: linear-gradient(rgba(30, 58, 138, 0), #002366);
+    --ss-fieldbg: linear-gradient(#ffd700, #ffb400); /* Royal gold gradient */
+    --ss-white-60: rgba(240, 248, 255, 0.6);
+    --ss-white-90: rgba(240, 248, 255, 0.9);
+
+    --ss-me-player-bg: #4682b4; /* Steel blue */
+    --ss-them-blue-bg: rgba(13, 71, 161, 0.9); /* Vibrant blue */
+    --ss-them-blue-color: #f0f8ff; /* Alice blue */
+    --ss-them-red-bg: rgba(230, 57, 70, 0.9); /* Crimson red */
+    --ss-them-red-color: #ffd700; /* Gold */
+}
+
+#maskleft, #maskright {
+    background: #001f3f; /* Deep navy blue */
+    flex: 1;
+}
+
+#healthContainer {
+    background: var(--ss-blueshadow); /* Deep blue background */
+    border-radius: 50%;
+}
+
+.healthBar {
+    fill: #2e8b57; /* Sea green */
+    stroke: #001f3f; /* Deep navy */
+}
+
+.crosshair {
+    position: absolute;
+    transform-origin: 50% top;
+    top: 50%;
+    border: solid 0.05em #2e8b57;
+    height: 0.8em;
+    margin-bottom: 0.12em;
+    opacity: 1;
+    left: calc(50% - 0.15em);
+    background: #4169e1; /* Royal blue */
+    width: 0.3em;
+}
+
+.crosshair.normal {
+    left: calc(50% - 0.15em);
+    background: #1e3a8a; /* Deep royal blue */
+    width: 0.3em;
+}
+
+.crosshair.powerful {
+    left: calc(50% - 0.25em);
+    background: #e63946; /* Crimson red */
+    width: 0.2em;
+}
+
+</style>`
+    }
+    document.body ? addScript() : document.addEventListener("DOMContentLoaded", e => addScript());
+    document.body ? addCustomSky() : document.addEventListener("DOMContentLoaded", addCustomSky);
+    document.body ? addCustomCrosshair() : document.addEventListener("DOMContentLoaded", addCustomCrosshair);
+    document.body ? drawCustomSky() : document.addEventListener("DOMContentLoaded", drawCustomSky);
+})();
+
+
+let stylesheet = document.createElement('link');
+stylesheet.rel = 'stylesheet';
+stylesheet.href = 'https://shellthemes.jayvan229.repl.co/ezthemedefault.css';
+document.head.appendChild(stylesheet);
+
+let css =
+
+    `#ss_background, #gameDescription, .load_screen, #progress-container {
+        background: url('https://raw.githubusercontent.com/97ishim/AngadHappy/refs/heads/main/HappyAngad.jpg') !important; /* Original Image */
+        position: absolute !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        width: 100% !important;
+        height: 100% !important;
+    }`
+    document.head.insertAdjacentHTML("beforeend", `<style>${css}</style>`);
+
+(function() {
+    'use strict';
+
+    let autoDodgeInterval;
+    const keySequence = ['a', 'w', 'd', ' '];
+    let currentIndex = 0;
+
+    function triggerKey(key) {
+        document.dispatchEvent(new KeyboardEvent('keydown', { 'key': key }));
+        setTimeout(() => {
+            document.dispatchEvent(new KeyboardEvent('keyup', { 'key': key }));
+        }, 500);
+    }
+
+    function autoDodge() {
+        triggerKey(keySequence[currentIndex]);
+        currentIndex = (currentIndex + 1) % keySequence.length;
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === '3' && !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey) {
+            if (!autoDodgeInterval) {
+                autoDodgeInterval = setInterval(autoDodge, 500);
+            } else {
+                clearInterval(autoDodgeInterval);
+                autoDodgeInterval = null;
+            }
+        }
+    });
+})();
+
+
+
